@@ -53,7 +53,7 @@ The guiding philosophy:
 
 ```mermaid
 flowchart TD
-    A[Source Database] --> B[Work Queue (PostgreSQL)]
+    A[Source Database] --> B["Work Queue (PostgreSQL)"]
     B --> C[Processing Loop]
     C -->|Claim batch| D[Chunk by Concurrency]
     D -->|Route jobs| E[Job Router]
@@ -61,7 +61,7 @@ flowchart TD
     F -->|Success| G[Mark Completed]
     F -->|Failure| H[Failure Handler]
     H --> I[Compute Backoff]
-    I --> J[Durable Outbox (Segmented JSONL)]
+    I --> J["Durable Outbox (Segmented JSONL)"]
     J --> K[Requeue to Work Queue]
     K --> B
 ```
